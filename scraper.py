@@ -26,6 +26,9 @@ FANZO_API_URL = "https://api.fanzo.com/v1/fixtures"
 WINDOW_DAYS = 14
 REQUEST_TIMEOUT = 20
 
+# Fixture names to exclude — broadcast formats, not real sporting events
+_EXCLUDED_NAMES = {"multiplex"}
+
 
 def fetch_fanzo_fixtures() -> List[Dict]:
     """
@@ -86,6 +89,10 @@ def fetch_fanzo_fixtures() -> List[Dict]:
                 return fixtures
             # Skip fixtures that have already kicked off
             if kickoff < now:
+                continue
+            # Skip non-fixture broadcast formats
+            name = item.get("name") or ""
+            if name.lower() in _EXCLUDED_NAMES:
                 continue
             teams = item.get("teams") or {}
             fixtures.append({
