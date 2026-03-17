@@ -100,7 +100,7 @@ def _score_fixture(fixture: Dict, standings: Optional[Dict] = None) -> Dict:
     rivalry_score = 100.0 if is_rivalry(home, away) else 0.0
 
     # ── Factor 4: Team popularity (15%) ───────────────────────────────────────
-    popularity_score = _get_popularity_score(home, away)
+    popularity_score = _get_popularity_score(home, away, sport=fixture.get("sport", ""))
 
     # ── Factor 5: Kick-off time convenience (15%) ─────────────────────────────
     kickoff_score = _get_kickoff_score(kickoff) if kickoff else 50.0
@@ -174,6 +174,18 @@ def _get_stakes_score(fixture: Dict) -> float:
     if any(t in text for t in ["six nations", "autumn nations", "world cup", "euros"]):
         return 72.0
 
+    # ── Combat sports — every card has real stakes (rankings, title shots) ──────
+    if "ufc" in text or "combat sport" in text:
+        if any(k in text for k in ["title", "championship", "champion", "belt"]):
+            return 85.0   # Title fight
+        return 65.0       # Regular card — still meaningful for fighters' careers
+
+    # ── Boxing — similarly stakes-driven ─────────────────────────────────────
+    if "boxing" in text:
+        if any(k in text for k in ["world title", "champion", "wbc", "wba", "ibf", "wbo"]):
+            return 88.0
+        return 62.0
+
     # ── UEFA club competitions — every match matters, even the league phase ───
     # CL/EL knockout rounds are caught above; this covers the league phase and
     # any fixture where FANZO doesn't include the round in the name.
@@ -195,14 +207,31 @@ def _get_stakes_score(fixture: Dict) -> float:
     return 45.0   # Default moderate stakes
 
 
-def _get_popularity_score(home: str, away: str) -> float:
+def _get_popularity_score(home: str, away: str, sport: str = "") -> float:
     """
     Score the fixture by the combined UK popularity of both teams.
     Weighted 40/40/20 toward the average, with a 20% bonus for the
     higher-profile side to reward marquee matchups.
+
+    For individual sports (combat sports, boxing, tennis, golf, darts,
+    snooker), fighter/athlete names won't appear in the team popularity
+    table. We use a sport-appropriate base score (55) rather than the
+    generic default (25), since FANZO only lists broadcast-worthy events.
     """
-    home_score = get_team_popularity(home)
-    away_score = get_team_popularity(away)
+    sport_lower = sport.lower()
+    individual_sports = {"combat sports", "mma", "boxing", "tennis", "golf", "darts", "snooker"}
+    individual_base = 55.0 if any(s in sport_lower for s in individual_sports) else None
+
+    def _lookup(name: str) -> float:
+        score = get_team_popularity(name)
+        # If the name returned the global default (25) and this is an individual
+        # sport, substitute the sport base so anonymous fighters don't tank the score
+        if individual_base is not None and score == 25.0:
+            return individual_base
+        return score
+
+    home_score = _lookup(home)
+    away_score = _lookup(away)
     higher = max(home_score, away_score)
     return round(home_score * 0.4 + away_score * 0.4 + higher * 0.2, 1)
 
