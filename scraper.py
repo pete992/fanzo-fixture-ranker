@@ -31,7 +31,8 @@ _EXCLUDED_NAMES = {"multiplex"}
 
 # Competition keywords that indicate youth/reserve football — excluded entirely
 _YOUTH_KEYWORDS = {"u21", "u-21", "under-21", "under 21", "u23", "u-23", "under-23",
-                   "under 23", "u18", "u17", "u16", "youth", "reserve", "b team", "ii"}
+                   "under 23", "u18", "u17", "u16", "youth", "reserve", "b team", "ii",
+                   "premier league 2", "pl2", "development league", "professional development"}
 
 
 def fetch_fanzo_fixtures() -> List[Dict]:
