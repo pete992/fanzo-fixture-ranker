@@ -100,6 +100,22 @@ COMPETITION_TIERS = {
     "FA Trophy": 35,
     "FA Vase": 32,
 
+    # ── TIER 5 ── Low-interest / niche ──────────────────────────────────────
+    # Youth / U21 / reserve competitions — not interesting to UK mainstream audience
+    "Under-21": 12,
+    "Under 21": 12,
+    "U21": 12,
+    "U-21": 12,
+    "Youth": 10,
+    "Reserve": 10,
+    # African / Asian / minor continental competitions
+    "CAF Champions League": 22,
+    "African Champions League": 22,
+    "CAF Confederation Cup": 18,
+    "AFC Champions League": 20,
+    "CONCACAF": 18,
+    "OFC": 12,
+
     # ── DEFAULT ─────────────────────────────────────────────────────────────
     "Unknown Competition": 30,
 }
@@ -122,6 +138,10 @@ def get_competition_tier_score(competition_name: str) -> float:
         return float(COMPETITION_TIERS[competition_name])
 
     comp_lower = competition_name.lower()
+
+    # Youth / U21 competitions — cap at 15 regardless of parent competition name
+    if any(k in comp_lower for k in ("u21", "u-21", "under-21", "under 21", "youth", "reserve")):
+        return 12.0
 
     # Qualifying competitions — cap before the generic substring match runs
     if "qualif" in comp_lower:

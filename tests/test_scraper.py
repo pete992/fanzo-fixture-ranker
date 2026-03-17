@@ -131,7 +131,7 @@ class TestFetchFanzoFixtures:
 
     def test_stops_at_window_end(self):
         near = make_api_item(fixture_id=1, name="Near Match", start=self._future(2))
-        far = make_api_item(fixture_id=2, name="Far Match", start=self._future(20))
+        far = make_api_item(fixture_id=2, name="Far Match", start=self._future(25))
         with patch.dict(os.environ, {"FANZO_API_KEY": "test-key"}):
             with patch("scraper.requests.get", return_value=make_mock_response([near, far])):
                 fixtures = fetch_fanzo_fixtures()

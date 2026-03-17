@@ -23,7 +23,7 @@ import requests
 logger = logging.getLogger(__name__)
 
 FANZO_API_URL = "https://api.fanzo.com/v1/fixtures"
-WINDOW_DAYS = 14
+WINDOW_DAYS = 21
 REQUEST_TIMEOUT = 20
 
 # Fixture names to exclude — broadcast formats, not real sporting events
