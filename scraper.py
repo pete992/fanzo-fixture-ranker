@@ -29,6 +29,10 @@ REQUEST_TIMEOUT = 20
 # Fixture names to exclude — broadcast formats, not real sporting events
 _EXCLUDED_NAMES = {"multiplex"}
 
+# Competition keywords that indicate youth/reserve football — excluded entirely
+_YOUTH_KEYWORDS = {"u21", "u-21", "under-21", "under 21", "u23", "u-23", "under-23",
+                   "under 23", "u18", "u17", "u16", "youth", "reserve", "b team", "ii"}
+
 
 def fetch_fanzo_fixtures() -> List[Dict]:
     """
@@ -93,6 +97,10 @@ def fetch_fanzo_fixtures() -> List[Dict]:
             # Skip non-fixture broadcast formats
             name = item.get("name") or ""
             if name.lower() in _EXCLUDED_NAMES:
+                continue
+            # Skip youth/reserve competitions
+            competition_name = ((item.get("competition") or {}).get("name") or "").lower()
+            if any(kw in competition_name for kw in _YOUTH_KEYWORDS):
                 continue
             teams = item.get("teams") or {}
             fixtures.append({
