@@ -27,6 +27,10 @@ COMPETITION_TIERS = {
     "World Cup": 100,
     "Olympics": 95,
     "Wimbledon": 92,
+    "Australian Open": 82,
+    "Roland Garros": 80,
+    "French Open": 80,
+    "US Open Tennis": 82,
     "Rugby World Cup": 90,
     "The Ashes": 90,
 
@@ -75,8 +79,10 @@ COMPETITION_TIERS = {
     "The Masters": 72,
     "The Open": 75,
     "Ryder Cup": 78,
-    "ATP Tour": 58,
-    "WTA Tour": 55,
+    "ATP Tour": 22,
+    "WTA Tour": 20,
+    "ATP": 22,
+    "WTA": 20,
     "NBA": 50,
     "NFL": 52,
 
