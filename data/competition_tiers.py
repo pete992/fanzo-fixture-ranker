@@ -16,6 +16,13 @@
 
 COMPETITION_TIERS = {
     # ── TIER 1 ── Global mega-events ────────────────────────────────────────
+    # IMPORTANT: Qualifying/qualification entries must appear BEFORE the
+    # generic "World Cup" entry so the substring matcher picks them up first.
+    "World Cup Qualifying": 58,
+    "World Cup Qualification": 58,
+    "FIFA World Cup Qualifying": 58,
+    "FIFA World Cup Qualification": 58,
+    "Rugby World Cup Qualifying": 50,
     "FIFA World Cup": 100,
     "World Cup": 100,
     "Olympics": 95,
@@ -80,6 +87,10 @@ COMPETITION_TIERS = {
     "EFL League Two": 40,
     "UEFA Europa Conference League": 50,
     "Conference League": 50,
+    "UEFA Nations League": 65,
+    "Nations League": 65,
+    "UEFA European Championship Qualifying": 63,
+    "Euro Qualifying": 63,
     "Autumn Nations Series": 53,
     "Autumn Internationals": 53,
     "International Friendly": 48,
@@ -99,6 +110,9 @@ def get_competition_tier_score(competition_name: str) -> float:
     Return the tier score for a competition.
     First tries an exact match, then a case-insensitive substring match.
     Falls back to the default score if nothing matches.
+
+    Qualifying/qualification competitions are capped at 65 so that e.g.
+    "FIFA World Cup 2026 Qualifying" doesn't inherit the World Cup (100) tier.
     """
     if not competition_name:
         return COMPETITION_TIERS["Unknown Competition"]
@@ -107,8 +121,16 @@ def get_competition_tier_score(competition_name: str) -> float:
     if competition_name in COMPETITION_TIERS:
         return float(COMPETITION_TIERS[competition_name])
 
-    # Case-insensitive substring match — e.g. "Barclays Premier League" → "Premier League"
     comp_lower = competition_name.lower()
+
+    # Qualifying competitions — cap before the generic substring match runs
+    if "qualif" in comp_lower:
+        for known_comp, score in COMPETITION_TIERS.items():
+            if known_comp.lower() in comp_lower:
+                return float(min(score, 65))
+        return 58.0  # Generic qualifier default
+
+    # Case-insensitive substring match — e.g. "Barclays Premier League" → "Premier League"
     for known_comp, score in COMPETITION_TIERS.items():
         if known_comp.lower() in comp_lower:
             return float(score)
