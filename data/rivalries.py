@@ -83,6 +83,8 @@ _FOOTBALL_RIVALRIES = {
     frozenset({"Arsenal", "Chelsea"}),                      # London Derby
     frozenset({"Chelsea", "Tottenham"}),                    # London Derby
     frozenset({"Chelsea", "Spurs"}),
+    frozenset({"Arsenal", "Manchester City"}),              # Title rivalry 2023, 2024, 2025
+    frozenset({"Arsenal", "Man City"}),
     frozenset({"Manchester City", "Liverpool"}),
     frozenset({"Man City", "Liverpool"}),
     frozenset({"Chelsea", "Arsenal"}),
