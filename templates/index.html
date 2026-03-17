@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FANZO Fixture Ranker</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-fanzo">FANZO</span>
+        <span class="brand-tool">Fixture Ranker</span>
+      </div>
+      <p class="brand-tagline">Live. Sport. Together.</p>
+    </div>
+  </header>
+
+  <!-- ── Main content ─────────────────────────────────────────────────────── -->
+  <main class="main-content">
+
+    <!-- Controls bar -->
+    <div class="controls-bar">
+      <div class="controls-left">
+        <h1 class="page-title">Top Fixtures — Next 7 Days</h1>
+        <p class="page-subtitle">Ranked by estimated UK fan interest across all televised sports.</p>
+      </div>
+      <div class="controls-right">
+        <button id="run-btn" class="btn btn-primary" onclick="runPipeline()">
+          Run
+        </button>
+        <button id="export-btn" class="btn btn-secondary" onclick="exportCSV()" disabled>
+          Export CSV
+        </button>
+      </div>
+    </div>
+
+    <!-- Status / loading area -->
+    <div id="status-area" class="status-area hidden">
+      <div class="spinner"></div>
+      <span id="status-text">Fetching fixtures from FANZO…</span>
+    </div>
+
+    <!-- Error message -->
+    <div id="error-area" class="error-area hidden">
+      <p id="error-text"></p>
+    </div>
+
+    <!-- Results table -->
+    <div id="results-area" class="hidden">
+
+      <div class="results-meta">
+        <span id="results-count"></span>
+        <span class="results-hint">Click any row to see the score breakdown.</span>
+      </div>
+
+      <table class="fixture-table" id="fixture-table">
+        <thead>
+          <tr>
+            <th class="col-rank">#</th>
+            <th class="col-fixture">Fixture</th>
+            <th class="col-competition">Competition</th>
+            <th class="col-kickoff">Kick-off</th>
+            <th class="col-channels">Channel(s)</th>
+            <th class="col-score">Score</th>
+          </tr>
+        </thead>
+        <tbody id="fixture-tbody">
+          <!-- Rows injected by script.js -->
+        </tbody>
+      </table>
+
+    </div>
+
+    <!-- Empty state (shown when run returns 0 fixtures) -->
+    <div id="empty-area" class="empty-area hidden">
+      <p>No fixtures found for the next 7 days. Try again later.</p>
+    </div>
+
+  </main>
+
+  <!-- ── Score breakdown modal (hidden by default) ────────────────────────── -->
+  <!--
+    Each fixture row, when clicked, opens an inline expanded section beneath
+    it rather than a modal — this keeps the UX simple and scannable.
+    The toggle logic lives in script.js.
+  -->
+
+  <!-- ── Footer ──────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <p>FANZO internal tool · Data sourced from <a href="https://www.fanzo.com/en" target="_blank" rel="noopener">fanzo.com</a></p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
