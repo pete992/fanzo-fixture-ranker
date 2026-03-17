@@ -166,8 +166,9 @@ def _get_stakes_score(fixture: Dict) -> float:
         return 50.0
 
     # ── Qualifying competitions — must be checked before tournament keywords ──
+    # Stakes ARE genuinely high (qualify or go home), but below the tournament itself
     if "qualif" in text or "qualification" in text:
-        return 52.0
+        return 65.0
 
     # ── Tournament round-robins (high stakes by nature) ───────────────────────
     if any(t in text for t in ["six nations", "autumn nations", "world cup", "euros"]):
