@@ -24,10 +24,14 @@ _FOOTBALL_RIVALRIES = {
     # and generated significant UK TV audiences. These carry as much intensity
     # for UK fans as domestic derbies.
     frozenset({"Manchester City", "Real Madrid"}),         # CL QF/SF 2022, 2023, 2024
+    frozenset({"Man City", "Real Madrid"}),
     frozenset({"Liverpool", "Real Madrid"}),               # CL Final 2018, 2022; QF 2023
     frozenset({"Manchester City", "Bayern Munich"}),       # CL QF 2023
+    frozenset({"Man City", "Bayern Munich"}),
     frozenset({"Manchester City", "Paris Saint-Germain"}), # CL SF 2021
+    frozenset({"Man City", "Paris Saint-Germain"}),
     frozenset({"Manchester City", "PSG"}),
+    frozenset({"Man City", "PSG"}),
     frozenset({"Liverpool", "Bayern Munich"}),             # CL R16 2019
     frozenset({"Liverpool", "Barcelona"}),                 # CL SF 2019 (4-0 comeback)
     frozenset({"Liverpool", "Atletico Madrid"}),           # CL R16 2020
@@ -42,27 +46,45 @@ _FOOTBALL_RIVALRIES = {
     frozenset({"Arsenal", "Barcelona"}),                   # CL multiple encounters
     frozenset({"Arsenal", "Real Madrid"}),                 # CL R16 2006, 2023
     frozenset({"Manchester United", "Real Madrid"}),       # CL multiple historic
+    frozenset({"Man Utd", "Real Madrid"}),
     frozenset({"Manchester United", "Barcelona"}),         # CL Final 2009, 2011
+    frozenset({"Man Utd", "Barcelona"}),
     frozenset({"Manchester United", "Bayern Munich"}),     # CL Final 1999; multiple since
+    frozenset({"Man Utd", "Bayern Munich"}),
     frozenset({"Manchester United", "Juventus"}),          # CL Final 1999; multiple
+    frozenset({"Man Utd", "Juventus"}),
     frozenset({"Manchester United", "Paris Saint-Germain"}), # CL R16 2019 comeback
+    frozenset({"Man Utd", "Paris Saint-Germain"}),
     frozenset({"Manchester United", "PSG"}),
+    frozenset({"Man Utd", "PSG"}),
     frozenset({"Tottenham", "Ajax"}),                      # CL SF 2019 (Spurs comeback)
+    frozenset({"Spurs", "Ajax"}),
     frozenset({"Tottenham", "Juventus"}),                  # CL R16 2018
+    frozenset({"Spurs", "Juventus"}),
     frozenset({"Manchester City", "Atletico Madrid"}),     # CL QF 2022, SF 2016
+    frozenset({"Man City", "Atletico Madrid"}),
     frozenset({"Manchester City", "Dortmund"}),            # CL QF 2021
+    frozenset({"Man City", "Dortmund"}),
     frozenset({"Manchester City", "Borussia Dortmund"}),
+    frozenset({"Man City", "Borussia Dortmund"}),
     frozenset({"Liverpool", "Inter Milan"}),               # CL R16 2022
     frozenset({"Liverpool", "Benfica"}),                   # CL QF 2022
 
     # ── Premier League / Top Flight ──────────────────────────────────────────
     frozenset({"Manchester United", "Manchester City"}),   # Manchester Derby
+    frozenset({"Man Utd", "Man City"}),
+    frozenset({"Man Utd", "Manchester City"}),
+    frozenset({"Manchester United", "Man City"}),
     frozenset({"Liverpool", "Manchester United"}),          # North West Derby
+    frozenset({"Liverpool", "Man Utd"}),
     frozenset({"Liverpool", "Everton"}),                    # Merseyside Derby
     frozenset({"Arsenal", "Tottenham"}),                    # North London Derby
+    frozenset({"Arsenal", "Spurs"}),
     frozenset({"Arsenal", "Chelsea"}),                      # London Derby
     frozenset({"Chelsea", "Tottenham"}),                    # London Derby
+    frozenset({"Chelsea", "Spurs"}),
     frozenset({"Manchester City", "Liverpool"}),
+    frozenset({"Man City", "Liverpool"}),
     frozenset({"Chelsea", "Arsenal"}),
     frozenset({"Chelsea", "Liverpool"}),
     frozenset({"Arsenal", "Liverpool"}),
