@@ -174,10 +174,10 @@ class TestTeamPopularity:
         assert get_team_popularity("England") >= 90
 
     def test_unknown_team_returns_default(self):
-        assert get_team_popularity("FC Obscura") == 40.0
+        assert get_team_popularity("FC Obscura") == 25.0
 
     def test_empty_string_returns_default(self):
-        assert get_team_popularity("") == 40.0
+        assert get_team_popularity("") == 25.0
 
     def test_popularity_score_range(self):
         for team in ["Liverpool", "Arsenal", "Chelsea", "Wales", "Celtic"]:

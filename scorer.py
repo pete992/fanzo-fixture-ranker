@@ -165,6 +165,10 @@ def _get_stakes_score(fixture: Dict) -> float:
     if "round of 32" in text or "last 32" in text:
         return 50.0
 
+    # ── Qualifying competitions — must be checked before tournament keywords ──
+    if "qualif" in text or "qualification" in text:
+        return 52.0
+
     # ── Tournament round-robins (high stakes by nature) ───────────────────────
     if any(t in text for t in ["six nations", "autumn nations", "world cup", "euros"]):
         return 72.0

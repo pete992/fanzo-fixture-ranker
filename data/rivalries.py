@@ -43,8 +43,6 @@ _FOOTBALL_RIVALRIES = {
     frozenset({"Chelsea", "PSG"}),
     frozenset({"Chelsea", "Atletico Madrid"}),             # CL R16 2022
     frozenset({"Arsenal", "Bayern Munich"}),               # CL R16 2005, 2013, 2014, 2015; QF 2024
-    frozenset({"Arsenal", "Leverkusen"}),                  # CL SF 2024
-    frozenset({"Arsenal", "Bayer Leverkusen"}),
     frozenset({"Arsenal", "Barcelona"}),                   # CL multiple encounters
     frozenset({"Arsenal", "Real Madrid"}),                 # CL R16 2006, 2023
     frozenset({"Manchester United", "Real Madrid"}),       # CL multiple historic

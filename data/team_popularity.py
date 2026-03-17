@@ -179,7 +179,7 @@ TEAM_POPULARITY = {  # type: Dict[str, float]
     "Catalans Dragons": 44,
 
     # ── Default ───────────────────────────────────────────────────────────────
-    "_default": 40,
+    "_default": 25,
 }
 
 
