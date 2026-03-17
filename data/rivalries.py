@@ -90,6 +90,12 @@ _FOOTBALL_RIVALRIES = {
     frozenset({"Chelsea", "Arsenal"}),
     frozenset({"Chelsea", "Liverpool"}),
     frozenset({"Arsenal", "Liverpool"}),
+    frozenset({"Arsenal", "Manchester United"}),            # Wenger/Ferguson era title rivalry
+    frozenset({"Arsenal", "Man Utd"}),
+    frozenset({"Chelsea", "Manchester United"}),            # 2000s-2010s title rivalry
+    frozenset({"Chelsea", "Man Utd"}),
+    frozenset({"Chelsea", "Manchester City"}),              # CL Final 2021, title rivals
+    frozenset({"Chelsea", "Man City"}),
     frozenset({"Newcastle", "Sunderland"}),                 # Tyne-Wear Derby
     frozenset({"Leeds", "Manchester United"}),              # Yorkshire-Lancashire
     frozenset({"Leeds United", "Manchester United"}),
@@ -135,6 +141,13 @@ _FOOTBALL_RIVALRIES = {
     frozenset({"England", "Argentina"}),
     frozenset({"England", "France"}),
     frozenset({"England", "Italy"}),
+    frozenset({"England", "Spain"}),
+    frozenset({"England", "Netherlands"}),                  # Euro 2024 semi-final
+    frozenset({"England", "Holland"}),
+    frozenset({"England", "Portugal"}),                     # World Cup 2006 QF
+    frozenset({"England", "Brazil"}),
+    frozenset({"Northern Ireland", "Republic of Ireland"}), # charged political/historic
+    frozenset({"Northern Ireland", "Ireland"}),
 }
 
 _RUGBY_UNION_RIVALRIES = {
