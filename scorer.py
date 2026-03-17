@@ -165,6 +165,11 @@ def _get_stakes_score(fixture: Dict) -> float:
     if "round of 32" in text or "last 32" in text:
         return 50.0
 
+    # ── Domestic cups — every round is knockout, elimination stakes ──────────
+    if any(k in text for k in ["fa cup", "carabao", "league cup", "efl cup",
+                                "scottish cup", "fa trophy", "fa vase"]):
+        return 72.0
+
     # ── Qualifying competitions — must be checked before tournament keywords ──
     # Stakes ARE genuinely high (qualify or go home), but below the tournament itself
     if "qualif" in text or "qualification" in text:
