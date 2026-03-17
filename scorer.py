@@ -128,7 +128,7 @@ def _score_fixture(fixture: Dict, standings: Optional[Dict] = None) -> Dict:
         + kickoff_score * WEIGHTS["kickoff_time"]
         + betting_score * WEIGHTS["betting_volume"]
     )
-    composite = round(min(100.0, composite * _gender_multiplier(fixture)), 1)
+    composite = round(min(100.0, composite * _gender_multiplier(fixture) * _uk_nation_multiplier(fixture)), 1)
 
     rationale = _generate_rationale(fixture, sub_scores, composite)
 
@@ -232,6 +232,25 @@ def _get_kickoff_score(kickoff_utc: datetime) -> float:
     if 0.0 <= hour < 3.0:
         return 20.0
     return 10.0   # 03:00–06:00
+
+
+# ── UK nation boost ────────────────────────────────────────────────────────────
+
+_UK_NATIONS = {"england", "scotland", "wales", "northern ireland", "great britain", "team gb"}
+
+
+def _uk_nation_multiplier(fixture: Dict) -> float:
+    """
+    Apply a 1.15 boost when at least one UK nation is competing.
+    UK fans have a direct stake in how England, Scotland, Wales and
+    Northern Ireland perform — these fixtures are more relevant to our
+    audience regardless of competition or opponent.
+    """
+    home = fixture.get("home_team", "").lower()
+    away = fixture.get("away_team", "").lower()
+    if home in _UK_NATIONS or away in _UK_NATIONS:
+        return 1.15
+    return 1.0
 
 
 # ── Gender multiplier ──────────────────────────────────────────────────────────
