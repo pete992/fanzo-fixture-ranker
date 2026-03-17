@@ -87,14 +87,15 @@ def fetch_fanzo_fixtures() -> List[Dict]:
             # Skip fixtures that have already kicked off
             if kickoff < now:
                 continue
+            teams = item.get("teams") or {}
             fixtures.append({
-                "name":        item.get("name", "Unknown"),
-                "home_team":   item.get("teams", {}).get("home", {}).get("name", "Unknown"),
-                "away_team":   item.get("teams", {}).get("away", {}).get("name", "Unknown"),
-                "competition": item.get("competition", {}).get("name", "Unknown Competition"),
-                "sport":       item.get("sport", {}).get("name", "Unknown"),
+                "name":        item.get("name") or "Unknown",
+                "home_team":   (teams.get("home") or {}).get("name") or "Unknown",
+                "away_team":   (teams.get("away") or {}).get("name") or "Unknown",
+                "competition": (item.get("competition") or {}).get("name") or "Unknown Competition",
+                "sport":       (item.get("sport") or {}).get("name") or "Unknown",
                 "kickoff":     kickoff,
-                "channels":    item.get("channels", []),
+                "channels":    item.get("channels") or [],
                 "fanzo_url":   f"https://www.fanzo.com/en/fixture/{item.get('id', '')}",
             })
 
