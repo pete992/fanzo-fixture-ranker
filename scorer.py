@@ -128,7 +128,7 @@ def _score_fixture(fixture: Dict, standings: Optional[Dict] = None) -> Dict:
         + kickoff_score * WEIGHTS["kickoff_time"]
         + betting_score * WEIGHTS["betting_volume"]
     )
-    composite = round(min(100.0, composite), 1)
+    composite = round(min(100.0, composite * _gender_multiplier(fixture)), 1)
 
     rationale = _generate_rationale(fixture, sub_scores, composite)
 
@@ -227,6 +227,21 @@ def _get_kickoff_score(kickoff_utc: datetime) -> float:
     if 0.0 <= hour < 3.0:
         return 20.0
     return 10.0   # 03:00–06:00
+
+
+# ── Gender multiplier ──────────────────────────────────────────────────────────
+
+def _is_womens(fixture: Dict) -> bool:
+    text = f"{fixture.get('name', '')} {fixture.get('competition', '')}".lower()
+    return "(w)" in text or "women" in text or " wsl" in text
+
+
+def _gender_multiplier(fixture: Dict) -> float:
+    if not _is_womens(fixture):
+        return 1.0
+    if "england" in fixture.get("name", "").lower():
+        return 1.0   # England Women's national team — full score
+    return 0.5       # All other women's fixtures
 
 
 # ── Rationale generation ───────────────────────────────────────────────────────
