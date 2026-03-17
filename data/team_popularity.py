@@ -178,6 +178,39 @@ TEAM_POPULARITY = {  # type: Dict[str, float]
     "Castleford Tigers": 47,
     "Catalans Dragons": 44,
 
+    # ── UFC / MMA — British stars + P4P top fighters ─────────────────────────
+    # British fighters scored on UK audience appeal; international fighters
+    # scored on P4P ranking position (approx: #1-3 → 73-76, #4-7 → 65-70,
+    # #8-15 → 58-63). Unknown fighters fall back to the combat sports base (55)
+    # set in scorer.py rather than the generic default (25).
+    "Tom Aspinall": 80,          # British, UFC Heavyweight Champion, P4P top 5
+    "Paddy Pimblett": 78,        # British fan favourite, huge UK following
+    "Leon Edwards": 72,          # British, former UFC Welterweight Champion
+    "Molly McCann": 68,          # British, popular UK fighter
+    "Arnold Allen": 62,          # British, top UFC Featherweight
+    "Jon Jones": 76,             # P4P #1, Heavyweight Champion
+    "Alex Pereira": 73,          # P4P top 3, Light Heavyweight Champion
+    "Islam Makhachev": 71,       # P4P top 3, Lightweight Champion
+    "Ilia Topuria": 68,          # P4P top 6, Featherweight Champion
+    "Dricus du Plessis": 65,     # P4P top 5, Middleweight Champion
+    "Conor McGregor": 82,        # Globally famous, huge UK following
+    "Charles Oliveira": 63,      # P4P top 10, fan favourite
+    "Sean O'Malley": 64,         # P4P top 8
+
+    # ── Boxing — British stars + world champions ──────────────────────────────
+    "Tyson Fury": 85,            # Hugely popular in UK, former heavyweight champion
+    "Anthony Joshua": 82,        # British, former heavyweight champion, huge UK following
+    "Chris Eubank Jr": 65,       # British, active contender
+    "Josh Taylor": 64,           # Scottish, former undisputed super-lightweight champion
+    "Joe Joyce": 61,             # British heavyweight contender
+    "Lawrence Okolie": 60,       # British, former WBO cruiserweight champion
+    "Callum Smith": 60,          # British, former WBA super middleweight champion
+    "Canelo Alvarez": 74,        # Global superstar, huge UK pay-per-view draw
+    "Oleksandr Usyk": 72,        # Undisputed heavyweight champion
+    "Terence Crawford": 68,      # Top P4P boxer
+    "Errol Spence": 65,          # Former undisputed welterweight champion
+    "Jermell Charlo": 62,        # Undisputed super welterweight champion
+
     # ── Default ───────────────────────────────────────────────────────────────
     "_default": 25,
 }
